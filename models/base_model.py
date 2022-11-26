@@ -1,38 +1,40 @@
 #!/usr/bin/python3
-"""This script is the base model"""
-
-from uuid import uuid4
 from datetime import datetime
+from uuid import uuid4
 import models
-from os import getenv
-from sqlalchemy import Column, DateTime, String
-from sqlalchemy.ext.declarative import declarative_base
 
-class BaseModel:
+"""
+Module BaseModel
+Parent of all classes
+"""
 
-    """Class from which all other classes will inherit"""
+
+class BaseModel():
+    """Base class for Airbnb clone project
+    Methods:
+        __init__(self, *args, **kwargs)
+        __str__(self)
+        __save(self)
+        __repr__(self)
+        to_dict(self)
+    """
 
     def __init__(self, *args, **kwargs):
-        """Initializes instance attributes
-        Args:
-            - *args: list of arguments
-            - **kwargs: dict of key-values arguments
         """
-
-        date_format = "%Y-%m-%dT%H:%M:%S.%f"
+        Initialize attributes: random uuid, dates created/updated
+        """
         if kwargs:
-            for key, value in kwargs.items():
+            for key, val in kwargs.items():
                 if "created_at" == key:
                     self.created_at = datetime.strptime(kwargs["created_at"],
-                                                        date_format)
+                                                        "%Y-%m-%dT%H:%M:%S.%f")
                 elif "updated_at" == key:
                     self.updated_at = datetime.strptime(kwargs["updated_at"],
-                                                        date_format)
+                                                        "%Y-%m-%dT%H:%M:%S.%f")
                 elif "__class__" == key:
                     pass
                 else:
-                    setattr(self, key, value)
-
+                    setattr(self, key, val)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
@@ -40,27 +42,33 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
-        """Returns official string representation"""
-
-        return ("[{}] ({}) {}".
+        """
+        Return string of info about model
+        """
+        return ('[{}] ({}) {}'.
                 format(self.__class__.__name__, self.id, self.__dict__))
 
     def __repr__(self):
-        """ make a representation copy of the __str__ """
-
+        """
+        returns string representation
+        """
         return (self.__str__())
 
     def save(self):
-        """updates the public instance attribute updated_at"""
-
+        """
+        Update instance with updated time & save to serialized file
+        """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """returns a dictionary containing all keys/values of __dict__"""
-
-        my_dict = self.__dict__.copy()
-        my_dict["__class__"] = self.__class__.__name__
-        my_dict["created_at"] = my_dict["created_at"].isoformat()
-        my_dict["updated_at"] = my_dict["updated_at"].isoformat()
-        return (my_dict)
+        """
+        Return dic with string formats of times; add class info to dic
+        """
+        dic = {}
+        dic["__class__"] = self.__class__.__name__
+        for k, v in self.__dict__.items():
+            if isinstance(v, (datetime, )):
+                dic[k] = v.isoformat()
+            else:
+                dic[k] = v
