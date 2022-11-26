@@ -1,17 +1,13 @@
 #!/usr/bin/python3
-
-"""
-class User inherits from BaseModel
+"""user class
 """
 
 from models.base_model import BaseModel
+import json
 
 
 class User(BaseModel):
-    """
-    Public Attributes are email,password,first_name,last_name
-    All are Empty strings
-    """
+    '''base model class'''
 
     email = ""
     password = ""
