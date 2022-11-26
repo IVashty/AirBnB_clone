@@ -1,24 +1,26 @@
 #!/usr/bin/python3
-
 """
-class Place inherits from BaseModel
+Module Place class
 """
-
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
     """
-    Public attributes are city_id, user_id,  name. description, number_rooms,
-    number_bathrooms, max_guest, price_by_night, latitude, Longitude,
-    amenity_ids
-    All entities are made up of
-        floats(= 0.0) which are latitude,longitude,amenity_ids
-        strings (= "") which are  city_id,user_id, name, description
-        integers (= 0.0) which number_rooms, number_bathrooms, max_guest,
-        price_by_night
+    Inherits from BaseModel
+    Public class attributes:
+        city_id:             (str) will be City.id
+        user_id:             (str) will be User.id
+        name:                (str)
+        description:         (str)
+        number_rooms:        (int) 0
+        number_bathrooms:    (int) 0
+        max_guest:           (int) 0
+        price_by_night:      (int) 0
+        latitude:            (float) 0.0
+        longitude:           (float) 0.0
+        amenity_ids:         (list) will be Amenity.id
     """
-
     city_id = ""
     user_id = ""
     name = ""
@@ -29,4 +31,4 @@ class Place(BaseModel):
     price_by_night = 0
     latitude = 0.0
     longitude = 0.0
-    amenity_ids = 0.0
+    amenity_ids = []
