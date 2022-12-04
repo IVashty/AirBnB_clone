@@ -1,9 +1,11 @@
 .filter {
-color:white ;
+background-color:white ;
 height: 70px ;
 width:100%;
 border:1px #DDDDDD;
 border-radius: 4px;
+text-align:center;;
+position:relative;
 }
 
 button{
@@ -11,11 +13,13 @@ font-size:18px;
 background-color:#FF5A5F;
 color:#FFFFFF;
 height:48px;
+width:20%;
 vertical-align: center;
 border-radius:4px;
+margin:auto;
+position:relative;
 }
 
 button:hover {
 opacity:90%;
-
 }
