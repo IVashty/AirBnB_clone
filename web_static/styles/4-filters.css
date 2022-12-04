@@ -7,15 +7,15 @@ border-radius: 4px;
 }
 
 button{
-justify-self: center;
 font-size:18px;
 background-color:#FF5A5F;
 color:#FFFFFF;
 height:48px;
+vertical-align: center;
 border-radius:4px;
 }
 
 button:hover {
-color:transparent;
+opacity:90%;
 
 }
