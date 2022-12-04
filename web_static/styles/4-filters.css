@@ -16,10 +16,14 @@ color:#FFFFFF;
 height:48px;
 width:20%;
 right:30px;
+border-color:#FF5A5F;
+border-style: Fsolid;
 border-radius:4px;
 position:absolute;
-
-
+float :right;
+opacity:10%;
+margin-top: 10px;
+right:30px;
 }
 
 button:hover {
